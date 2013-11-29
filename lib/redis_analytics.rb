@@ -14,6 +14,7 @@ require 'redis_analytics/parameters'
 require 'redis_analytics/visit'
 require 'redis_analytics/time_ext'
 require 'redis_analytics/helpers'
+require 'redis_analytics/data_set'
 require 'redis_analytics/api'
 require 'redis_analytics/dashboard'
 

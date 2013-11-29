@@ -14,6 +14,11 @@
 	  <button type="button" class="btn btn-small <%="active" if @range == range%>" onclick='changeTimeFrame("<%=range.to_s%>")'><%=range.to_s%></button>
         <% end %>
         </div>
+        <select id="dimensions">
+          <% Rack::RedisAnalytics.existed_dimensions.each do |d| %>
+          <option value="<%= d %>"><%= d %></option>
+          <% end %>
+        </select>
       </li>
     </ul>
   </div>

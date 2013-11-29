@@ -29,6 +29,11 @@ module Rack
       # Path to the Geo IP Database file
       attr_writer :geo_ip_data_path
 
+      attr_writer :dimensions
+
+      # Track json and js content-types
+      attr_accessor :track_ajax_calls
+
       # Redis namespace for keys
       def redis_namespace
         @redis_namespace ||= 'ra'
@@ -89,6 +94,13 @@ module Rack
         yield self
       end
 
+      def dimensions(request)
+        @dimensions.respond_to?(:call) ? @dimensions.call(request) : []
+      end
+
+      def existed_dimensions
+        redis_connection.smembers("#{redis_namespace}:#DIMENSIONS")
+      end
     end
   end
 end
